@@ -1,14 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import ValidatedLoginForm from "./ValidatedLoginForm";
 
-function App() {
+export default function App() {
   return (
     <div className="App">
-      {/*
-        
-      */}
+      <h1>Please Enter your credentials to login to our Website!</h1>
+      <ValidatedLoginForm />
     </div>
   );
 }
 
-export default App;
+const rootElement = document.getElementById("root");
+ReactDOM.render(<App />, rootElement);
