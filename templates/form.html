@@ -1,0 +1,27 @@
+<form action="/send" method="POST">
+    <label for="main reciever">To: </label>
+    <input id="main reciever" type="email" name="name_field" value=""></input>
+    <br>
+    <label for="other reciever">CC: </label>
+    <input id="other reciever" type="email" name="name_field" value=""></input>
+    <br>
+    <label for="Subject">Subject: </label>
+    <input id="Subject" type="text" name="name_field" value=""></input>
+    <br>
+    <label for="Message">Message: </label>
+    <input id="Message" type="text" name="name_field" value="" rows='8'></input>
+    <br>
+    <label for="Type">Schedule: </label>
+    <br>
+    <select name="name_field" id="Type">
+        <option value="Recurring">Recurring (every 30 sec)</option>
+        <option value="Weekly">Weekly</option>
+        <option value="Monthly">Monthly</option>
+        <option value="Yearly">Yearly</option>
+    </select>
+    <br>
+    <label for="Start Date and time">Start Date and Time: </label>
+    <input id="Start Date and time" type="datetime-local" name="name_field" value=""></input>
+    <br>
+    <input type="submit" value="Send"></input>
+</form>
