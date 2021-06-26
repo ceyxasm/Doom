@@ -6,7 +6,8 @@ const nodemailer = require('nodemailer');
 const path = require('path');
 const { PassThrough } = require("stream");
 const { Console } = require("console");
-
+const { exit } = require('process');
+require('dotenv').config()
 
 const port = process.env.PORT || 3000;  //PORT
 
@@ -25,9 +26,25 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-
 // EndPoints
-app.get('/', (req, res) => {
+app.get('/login',(req,res)=>{
+    fs.readFile("./templates/login.html", function (error, pgResp) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(pgResp);
+        res.end();
+    });
+}); 
+app.post('/sendl',(req,res)=>{
+    console.log(req.body);
+    
+    fs.readFile("./templates/success_login.html", function (error, pgResp) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(pgResp);
+        res.end();
+    });
+});
+
+app.get('/',(req,res)=>{
     fs.readFile("./templates/index.html", function (error, pgResp) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(pgResp);
@@ -41,13 +58,14 @@ app.post('/send', (req, res) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'mark121wood@gmail.com',
-            pass: 'wood@17@MARK'
+            user: process.env.USER_MAIL,
+            pass: process.env.USER_PASS
         },
         tls: {
             rejectUnauthorized: false
         }
     });
+    
     let mailOptions = {
         from: `${req.body.from}`,
         to: `${req.body.to}`,
