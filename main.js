@@ -25,6 +25,14 @@ app.use(bodyParser.json());
 
 
 // EndPoints
+app.get('/login',(req,res)=>{
+    fs.readFile("./templates/login.html", function (error, pgResp) {
+        res.writeHead(200, { 'Content-Type': 'text/html' });
+        res.write(pgResp);
+        res.end();
+    });
+}); 
+
 app.get('/',(req,res)=>{
     fs.readFile("./templates/index.html", function (error, pgResp) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
