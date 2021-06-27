@@ -45,6 +45,8 @@ app.get('/login',(req,res)=>{
 app.post('/login',(req,res)=>{
     let user = req.body.email;
     let pass = req.body.password;
+    console.log(user,pass,process.env.GLOBAL_MAIL, process.env.GLOBAL_PASS);
+
     if(user==process.env.GLOBAL_MAIL && pass==process.env.GLOBAL_PASS){
         return res.redirect('/email');
     }
@@ -76,7 +78,8 @@ app.get('/email',(req,res)=>{
 });
 
 app.post('/send', (req, res) => {
-
+    console.log(req.body);
+    return res.redirect('/login');
     // Using NodeMailer 
     let transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -90,7 +93,7 @@ app.post('/send', (req, res) => {
     });
     
     let mailOptions = {
-        from: `${req.body.from}`,
+        from: process.env.USER_MAIL,
         to: `${req.body.to}`,
         subject: `${req.body.subject}`,
         text: `${req.body.message}`
