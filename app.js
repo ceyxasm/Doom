@@ -7,7 +7,6 @@ const path = require('path');
 const { PassThrough } = require("stream");
 const { Console } = require("console");
 const { exit } = require('process');
-const delay = require('delay');
 
 require('dotenv').config()
 
@@ -81,6 +80,7 @@ app.post('/send', (req, res) => {
     console.log(req.body);
     return res.redirect('/login');
     // Using NodeMailer 
+    
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
