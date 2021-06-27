@@ -2,88 +2,97 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Doom Mail</title>
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
-  <link rel="stylesheet" href="/public/css/style.css">
-  <link rel="icon" href="/public/img/logo192.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Doom Mail</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="icon" href="/public/img/logo192.png" type="image/x-icon">
 </head>
 
 <body style="background: #4b6cb7; 
   background: -webkit-linear-gradient(to right, #182848, #4b6cb7);  
   background: linear-gradient(to right, #182848, #4b6cb7); 
 ">
-  <div class="container">
-    <h1 class="brand"><span>Doom</span> Mail</h1>
-    <div class="wrapper animated bounceInLeft">
-      <div class="company-info">
-        <h3>Doom Mail</h3>
-        <ul>
-          <li><i class="fa fa-road"></i> IIT Jodhpur</li>
-          <li><i class="fa fa-phone"></i> (555) 555-5555</li>
-          <li><i class="fa fa-envelope"></i> mail@doom.com</li>
-        </ul>
-      </div>
-      <div class="contact">
-        <h3>Compose</h3>
-        <form  action="/send" method="POST">
-          <p class="full">
-            <label>From</label>
-            <input type="email" name="email" required>
-          </p>
-          <p class="full">
-            <label>To</label>
-            <input type="email" name="to" required>
-          </p>
-          <p class="full">
-            <label>CC</label>
-            <input type="email" name="cc">
-          </p>
+    <div class="container">
+        <h1 class="brand"><span>Doom</span> Mail</h1>
+        <div class="wrapper animated bounceInLeft">
+            <div class="company-info">
+                <h3>Doom Mail</h3>
+                <ul>
+                    <li><i class="fa fa-road"></i> IIT Jodhpur</li>
+                    <li><i class="fa fa-phone"></i> (555) 555-5555</li>
+                    <li><i class="fa fa-envelope"></i> mail@doom.com</li>
+                </ul>
+            </div>
+            <div class="contact">
+                <h3>Compose</h3>
+                <form action="/send" onsubmit='return copyContent()' method="POST">
+                    <p class="full">
+                        <label>From</label>
+                        <input type="email" name="email" required>
+                    </p>
+                    <p class="full">
+                        <label>To</label>
+                        <input type="email" name="to" required>
+                    </p>
+                    <p class="full">
+                        <label>CC</label>
+                        <input type="email" name="cc">
+                    </p>
 
-          <p class="full">
-            <label>Subject</label>
-            <input type="text" name="subject">
-          </p>
+                    <p class="full">
+                        <label>Subject</label>
+                        <input type="text" name="subject">
+                    </p>
 
-          
-          <p class="full">
-            <label for="schedule">Schedule</label required>
-            <select id="schedule"  name="schedule" style="height: 30px;">
-              <option value="recurring">Recurring</option>
-              <option value="weekly">Weekly</option>
-              <option value="monthly">Monthly</option>
-              <option value="yearly">Yearly</option>
-            </select>
-          </p>
 
-          <p class="full " >
-            <label>Message</label>
-            <div id="text" contenteditable="true" style="width :750px;
+                    <p class="full">
+                        <label for="schedule">Schedule</label required>
+                        <select id="schedule" name="schedule" style="height: 30px;">
+                            <option value="recurring">Recurring</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="yearly">Yearly</option>
+                        </select>
+                    </p>
+                    <textarea id="hiddenTextarea" name="message" hidden></textarea>
+                    <p class="full">
+                        <label>Message</label>
+                    <div id="myContentEditable" contenteditable="true" style="width :750px;
             min-height : 200px;
             border : 2px solid;">
-              
-            </div class="textButtons">
-            <br>
-            <div>
-            <button type="button" class="button1" onclick="document.execCommand('bold');" style="width: 100px;"><strong>Bold </strong></button>
-            <button type="button" class="button1" onclick="document.execCommand('italic');" style="width: 100px;"><i>italics </i></button>
-            <button type="button" class="button1" onclick="document.execCommand('underline');" style="width: 100px;"><u>underline</u></button>
-            </div>
-          </p> 
-          
-          <br>
 
-          <p class="full">
-            <button type="submit">Send Mail</button>
-          </p>
-        </form>
-      </div>
+                    </div class="textButtons">
+                    <br>
+                    <div>
+                        <button type="button" class="button1" onclick="document.execCommand('bold');"
+                            style="width: 100px;"><strong>Bold </strong></button>
+                        <button type="button" class="button1" onclick="document.execCommand('italic');"
+                            style="width: 100px;"><i>italics </i></button>
+                        <button type="button" class="button1" onclick="document.execCommand('underline');"
+                            style="width: 100px;"><u>underline</u></button>
+                    </div>
+                    </p>
+
+                    <br>
+
+                    <p class="full">
+                        <button type="submit">Send Mail</button>
+                    </p>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
 </body>
+<script>
+    function copyContent() {
+        document.getElementById("hiddenTextarea").value = document.getElementById("myContentEditable").innerHTML;
+        return true;
+    }
+</script>
 
 </html>
