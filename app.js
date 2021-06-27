@@ -7,6 +7,8 @@ const path = require('path');
 const { PassThrough } = require("stream");
 const { Console } = require("console");
 const { exit } = require('process');
+const delay = require('delay');
+
 require('dotenv').config()
 
 const port = process.env.PORT || 3000;  //PORT
@@ -26,7 +28,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
+
+
 // EndPoints
+app.get('/',(req,res)=>{
+    return res.redirect('/login');
+}); 
+
 app.get('/login',(req,res)=>{
     fs.readFile("./templates/login.html", function (error, pgResp) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
@@ -34,16 +42,17 @@ app.get('/login',(req,res)=>{
         res.end();
     });
 }); 
-app.post('/sendl',(req,res)=>{
+app.post('/login',(req,res)=>{
+    let user = req.body.email;
+    let pass = req.body.password;
+    if(user==process.env.GLOBAL_MAIL && pass==process.env.GLOBAL_PASS){
+        return res.redirect('/email');
+    }
+    else{
+        return res.redirect('/login');
+    }
     
-    fs.readFile("./templates/success_login.html", function (error, pgResp) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(pgResp);
-        res.end();
-    });
 });
-
-
 
 app.get('/signup',(req,res)=>{
     fs.readFile("./templates/signup.html", function (error, pgResp) {
@@ -53,17 +62,12 @@ app.get('/signup',(req,res)=>{
     });
 }); 
 
-app.post('/sends',(req,res)=>{
-    console.log(req.body);
+app.post('/signup',(req,res)=>{
     
-    fs.readFile("./templates/success_signup.html", function (error, pgResp) {
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.write(pgResp);
-        res.end();
-    });
+    return res.redirect('/login');
 });
 
-app.get('/',(req,res)=>{
+app.get('/email',(req,res)=>{
     fs.readFile("./templates/index.html", function (error, pgResp) {
         res.writeHead(200, { 'Content-Type': 'text/html' });
         res.write(pgResp);
@@ -73,7 +77,7 @@ app.get('/',(req,res)=>{
 
 app.post('/send', (req, res) => {
 
-    
+    // Using NodeMailer 
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -91,7 +95,7 @@ app.post('/send', (req, res) => {
         subject: `${req.body.subject}`,
         text: `${req.body.message}`
     };
-    console.log(mailOptions);
+    
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
