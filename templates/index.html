@@ -25,32 +25,58 @@
         <ul>
           <li><i class="fa fa-road"></i> IIT Jodhpur</li>
           <li><i class="fa fa-phone"></i> (555) 555-5555</li>
-          <li><i class="fa fa-envelope"></i> main@doom.com</li>
+          <li><i class="fa fa-envelope"></i> mail@doom.com</li>
         </ul>
       </div>
       <div class="contact">
         <h3>Compose</h3>
-        <form action="/send" method="POST">
+        <form  action="/send" method="POST">
           <p class="full">
             <label>From</label>
-            <input type="email" name="from">
+            <input type="email" name="email" required>
           </p>
           <p class="full">
             <label>To</label>
-            <input type="email" name="to">
+            <input type="email" name="to" required>
           </p>
           <p class="full">
             <label>CC</label>
             <input type="email" name="cc">
           </p>
+
           <p class="full">
             <label>Subject</label>
             <input type="text" name="subject">
           </p>
+
+          
           <p class="full">
-            <label>Message</label>
-            <textarea name="message" rows="5"></textarea>
+            <label for="schedule">Schedule</label required>
+            <select id="schedule"  name="schedule" style="height: 30px;">
+              <option value="recurring">Recurring</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+              <option value="yearly">Yearly</option>
+            </select>
           </p>
+
+          <p class="full " >
+            <label>Message</label>
+            <div id="text" contenteditable="true" style="width :750px;
+            min-height : 200px;
+            border : 2px solid;">
+              
+            </div class="textButtons">
+            <br>
+            <div>
+            <button type="button" class="button1" onclick="document.execCommand('bold');" style="width: 100px;"><strong>Bold </strong></button>
+            <button type="button" class="button1" onclick="document.execCommand('italic');" style="width: 100px;"><i>italics </i></button>
+            <button type="button" class="button1" onclick="document.execCommand('underline');" style="width: 100px;"><u>underline</u></button>
+            </div>
+          </p> 
+          
+          <br>
+
           <p class="full">
             <button type="submit">Send Mail</button>
           </p>

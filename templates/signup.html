@@ -46,23 +46,22 @@ background: linear-gradient(to right, #0b8793, #360033);
     			margin-bottom: 25px;
     			border: 1px solid transparent;
     			border-radius: 4px;">
-                <form action="/login" method="GET">
-                        
+            <form action="/sends" method="POST">
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="email" name="" class="form-control input_user" value="" placeholder="email id" required>
+							<input type="email" name="email: " class="form-control input_user" value="" placeholder="email id" required>
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" name="" class="form-control input_pass" value="" placeholder="password" required pattern=".{8,}" title="8 characters minimum">
+							<input type="password" name="passowrd: " class="form-control input_pass" value="" placeholder="password" required pattern=".{8,}" title="8 characters minimum">
 						</div>
 						
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="submit" name="button" class="btn login_btn" >Sign Up</button>
+				 	<button type="submit" class="btn login_btn" >Sign Up</button>
 				   </div>
 					</form>
 				</div>
