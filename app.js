@@ -44,9 +44,8 @@ app.get('/login',(req,res)=>{
 app.post('/login',(req,res)=>{
     let user = req.body.email;
     let pass = req.body.password;
-    console.log(user,pass,process.env.GLOBAL_MAIL, process.env.GLOBAL_PASS);
 
-    if(user==process.env.GLOBAL_MAIL && pass==process.env.GLOBAL_PASS){
+    if(user=='mark121wood@gmail.com' && pass=='doomdoom'){
         return res.redirect('/email');
     }
     else{
