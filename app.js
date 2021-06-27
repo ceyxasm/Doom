@@ -77,8 +77,6 @@ app.get('/email',(req,res)=>{
 });
 
 app.post('/send', (req, res) => {
-    console.log(req.body);
-    return res.redirect('/login');
     // Using NodeMailer 
     
     let transporter = nodemailer.createTransport({
@@ -96,7 +94,7 @@ app.post('/send', (req, res) => {
         from: process.env.USER_MAIL,
         to: `${req.body.to}`,
         subject: `${req.body.subject}`,
-        text: `${req.body.message}`
+        html: `${req.body.message}`
     };
     
     transporter.sendMail(mailOptions, function (error, info) {
