@@ -20,5 +20,6 @@ to run the app
 > clone the repo
 > run < npm i>
 > run <node app.js>
+> browse for <localhost:3000>
 
 
